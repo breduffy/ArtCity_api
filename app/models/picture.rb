@@ -1,4 +1,6 @@
 class Picture < ActiveRecord::Base
+  belongs_to :artwork
+
   has_attached_file :image,
     :styles => { :large => "510x510#", :medium => "250x250#" },
     :processors => [:thumbnail],

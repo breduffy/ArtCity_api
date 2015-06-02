@@ -49,5 +49,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'aws-sdk', '< 2.0'
 
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'active_model_serializers'
 
 

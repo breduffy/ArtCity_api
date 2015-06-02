@@ -10,3 +10,9 @@
 @file = Rack::Test::UploadedFile.new(Rails.root + 'cookie-monster.jpg', 'image/jpg')
 
 Picture.create!(image: @file)
+
+####Boston Artworks####
+mfa = Venue.create!(name: 'Museum of Fine Arts', city: 'boston')
+mfa.artworks.create!(title: 'N/A', artist: 'Janet Echelman', venue:'Rose F. Kennedy Greenway', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope')
+puts "created an artwork"
+##how do I associate the artwork with a picture???

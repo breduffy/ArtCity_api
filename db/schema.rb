@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601220722) do
+ActiveRecord::Schema.define(version: 20150602211009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artworks", force: :cascade do |t|
+    t.string   "title"
+    t.string   "artist"
+    t.string   "venue"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.text     "description"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "venue_id"
+  end
+
+  add_index "artworks", ["venue_id"], name: "index_artworks_on_venue_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -25,4 +39,29 @@ ActiveRecord::Schema.define(version: 20150601220722) do
     t.datetime "image_updated_at"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.text     "interests"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "artworks", "venues"
 end

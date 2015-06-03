@@ -31,6 +31,14 @@ module ArtCityApi
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    #makes front end and back end available, take any origin and headers
+    config.middleware.insert_before 0, "Rack::Cors" do
+     allow do
+       origins '*'
+       resource '*', :headers => :any, :methods => [:get, :post]
+     end
+   end
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end

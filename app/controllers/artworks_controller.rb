@@ -16,9 +16,9 @@ class ArtworksController < ApplicationController
 
   # POST /artwork
   def create
-    @venue = Artwork.new(artwork_params)
+    @venue = Artwork.new(create_artwork_params)
     if @artwork.save
-      render json: @artwork, status: :created, location: artworks_url
+      render json: @artwork, status: :created
     else
       render json: @artwork.errors, status: :unprocessable_entity
      end
@@ -46,6 +46,10 @@ class ArtworksController < ApplicationController
    def artwork_params
     params.require(:movie)
       .permit(:title, :artist, :venue, :neighborhood, :city, :description, :closing_date)
+  end
+
+  def create_artwork_params
+    params.permit(:title, :artist, :venue, :neighborhood, :city, :description, :closing_date, :image)
   end
 end
 

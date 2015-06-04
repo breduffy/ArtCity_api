@@ -5,6 +5,7 @@ class CreateArtworks < ActiveRecord::Migration
       t.string :artist
       t.string :venue
       t.string :neighborhood
+      t.string :street
       t.string :city
       t.text :description
       t.string :closing_date

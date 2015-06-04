@@ -11,9 +11,9 @@ class Picture < ActiveRecord::Base
       :access_key_id => ENV['ACCESS_KEY_ID'],
       :secret_access_key => ENV['SECRET_ACCESS_KEY_ID']}
 
-  #validates images
-  validates :image, presence: true
-  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  validates_with AttachmentSizeValidator, :attributes => :image, :less_than => 100.megabytes
+  # #validates images
+  # validates :image, presence: true
+  # validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  # validates_with AttachmentSizeValidator, :attributes => :image, :less_than => 100.megabytes
 
 end

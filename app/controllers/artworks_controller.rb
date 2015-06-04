@@ -7,6 +7,12 @@ class ArtworksController < ApplicationController
     render json: @artworks
   end
 
+   def find_by_city_and_tags
+    @artworks = params[:tag].map { |tag| Tag.find_by(name: tag).artworks.where(city:params[:city]) }
+    @artworks.flatten!
+    render json: @artworks
+  end
+
   # GET /artworks/:id
   def show
     # find one artwork by id
@@ -41,6 +47,29 @@ class ArtworksController < ApplicationController
 
     head :no_content
   end
+
+
+  #FIXME: Link with Tag filter
+  # def filters
+  #   @results =[];
+  #   #for each tag you get back
+  #   params.tag.resultsthis.tag] = artworks.find_by(this.tag)
+  #   @results = results | this.tag
+
+  #   render json: @results
+  # end
+
+  # def filters
+  #   @artworks = if params[:tag]
+  #     Artwork.tagged_with(params[:tag])
+  #   else
+  #     Artwork.all
+  #   end
+  #   render json: @artwork
+  # end
+
+
+
 
   private
    def artwork_params

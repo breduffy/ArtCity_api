@@ -1,9 +1,6 @@
 class VenuesController < ApplicationController
 
-  def find_by_city
-    @venues = Venue.where(city:params[:city])
-    render json: @venues
-  end
+
 
   #GET all the cities from the venue attributes??
   # cities = Venue.all.map do |venue|

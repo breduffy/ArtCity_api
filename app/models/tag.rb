@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-  belongs_to :artwork
+  #Do this to create a link between art and tag filters
+  has_and_belongs_to_many :artworks
 end

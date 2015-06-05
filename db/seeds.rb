@@ -11,6 +11,10 @@
 
 Picture.create!(image: @file)
 
+#Create iamge for floating sculpture
+@floatingSculpture = Rack::Test::UploadedFile.new(Rails.root + 'floatingSculpture_boston.png', 'image/png')
+Picture.create!(image: @floatingSculpture)
+
 #FIXME: TO DO: Get rid of overlap between city, venue etc in parameters
 
 ####Boston Artworks####
@@ -19,7 +23,7 @@ mfa.artworks.create!(title: 'Fray Hortensio Felix Paravicino', artist: 'El Greco
 
 
 greenway = Venue.create!(name: 'Rose F. Kennedy Greenway', city: 'boston')
-mfa.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope')
+mfa.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope', image: @floatingSculpture)
 
 
 puts "created two artworks in Boston"
@@ -28,19 +32,22 @@ puts "created two artworks in Boston"
 
 ####New York Artworks
 fivePointz = Venue.create!(name: 'Five Pointz', city: 'newyork')
-fivePointz.artworks.create!(title: '', artist: 'various', neighborhood:'Long Island City', city: 'newyork', description:'Wall of graffitti')
+fivePointz.artworks.create!(title: 'Five Pointz', artist: 'various', neighborhood:'Long Island City', city: 'newyork', description:'Wall of graffitti')
 
 puts "created an artwork in New York"
 
 
 ####Chicago Artworks
 artInstitute = Venue.create!(name: 'Art Institute of Chicago', city: 'chicago')
-artInstitute.artworks.create!(title: 'Nighthawks', artist: 'Edward Hopper', neighborhood: 'Loop', description: 'Really awesome painting')
+artInstitute.artworks.create!(title: 'Nighthawks', artist: 'Edward Hopper', neighborhood: 'Loop', city: 'chicago', description: 'Really awesome painting')
+
+millenniumPark = Venue.create!(name: 'Millennium Park', city: 'chicago')
+millenniumPark.artworks.create!(title: 'Cloud Gate', artist: 'Anish Kapoor', neighborhood: 'Loop', city: 'chicago', description: 'The Bean.')
 
 
 ####Los Angeles Artworks
 pacificTower = Venue.create!(name:'Security Pacific Tower', city: 'Los Angeles')
-pacificTower.artworks.create!(title: 'Four Arches', artist: 'Alexander Calder', neighborhood: '', description: 'Painted steel sculpture' )
+pacificTower.artworks.create!(title: 'Four Arches', artist: 'Alexander Calder', neighborhood: '', city: 'losandeles', description: 'Painted steel sculpture' )
 
 
 

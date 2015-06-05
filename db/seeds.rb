@@ -15,19 +15,65 @@ Picture.create!(image: @file)
 @floatingSculpture = Rack::Test::UploadedFile.new(Rails.root + 'floatingSculpture_boston.png', 'image/png')
 Picture.create!(image: @floatingSculpture)
 
+#Create image for El Grecco
+@frayGreco = Rack::Test::UploadedFile.new(Rails.root + 'fray_greco.jpg', 'image/jpg')
+Picture.create!(image: @frayGreco)
+
+#Create Edgar Allan Poe Statue
+@poe_boston = Rack::Test::UploadedFile.new(Rails.root + 'poe_boston.jpg', 'image/jpg')
+Picture.create!(image: @poe_boston)
+
+
+
 #FIXME: TO DO: Get rid of overlap between city, venue etc in parameters
 
 ####Boston Artworks####
 mfa = Venue.create!(name: 'Museum of Fine Arts', city: 'boston')
-mfa.artworks.create!(title: 'Fray Hortensio Felix Paravicino', artist: 'El Greco', neighborhood:'Fenway', city: 'Boston', description:'oil paint on canvas')
+
+greco = mfa.artworks.create!(title: 'Fray Hortensio Felix Paravicino', artist: 'El Greco', neighborhood:'Fenway', city: 'Boston', description:'oil paint on canvas', image: @frayGreco)
+
+# greco.tags.create!(name: 'museums')
+# greco.tags.create!(name: 'painting')
+# greco.tags.create!(name: 'historic')
+
 
 
 greenway = Venue.create!(name: 'Rose F. Kennedy Greenway', city: 'boston')
-mfa.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope', image: @floatingSculpture)
+float = greenway.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope', image: @floatingSculpture)
+
+bostonCommon = Venue.create!(name: 'Boston Common', city: 'boston')
+poe = bostonCommon.artworks.create!(title: 'Edgar Allan Poe', artist: 'Stefanie Rocknak', neighborhood:'Back Bay', city: 'Boston', description:'Bronze Scuplutre', image: @poe_boston)
+
+puts "created three artworks in Boston"
 
 
-puts "created two artworks in Boston"
-##how do I associate the artwork with a picture???
+# ['public', 'museums', 'graffiti', 'architecture', 'galleries'].each do |tag_name|
+
+# end
+#Add tags to artwork
+public = Tag.new(name: 'public')
+museums = Tag.new(name: 'museums')
+graph = Tag.new(name: 'graffiti')
+arch = Tag.new(name: 'architecture')
+gall = Tag.new(name: 'galleries')
+his = Tag.new(name: 'historic')
+# Tag.new('salons')
+# Tag.new('painting')
+# Tag.new('printmaking')
+# Tag.new('performance')
+sculp = Tag.new(name: 'sculpture')
+# Tag.new('modern')
+# Tag.new('contemporary')
+
+# adding greco tags
+greco.tags << public
+greco.tags << sculp
+
+float.tags << public
+float.tags << sculp
+
+
+
 
 
 ####New York Artworks

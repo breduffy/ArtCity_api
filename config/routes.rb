@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :users
 
   get 'artworks/search' => 'artworks#find_by_city_and_tags'
-  resources :artworks, only: [:create, :show]
+  resources :venues do
+    resources :artworks, only: [:create, :show]
+  end
   # resources :venues do
   #   resources :artworks, except: [:new, :edit]
   # end

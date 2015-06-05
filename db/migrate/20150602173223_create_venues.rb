@@ -12,3 +12,4 @@ class CreateVenues < ActiveRecord::Migration
     end
   end
 end
+

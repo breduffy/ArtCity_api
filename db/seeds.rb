@@ -11,13 +11,15 @@
 
 Picture.create!(image: @file)
 
+#FIXME: TO DO: Get rid of overlap between city, venue etc in parameters
+
 ####Boston Artworks####
 mfa = Venue.create!(name: 'Museum of Fine Arts', city: 'boston')
-mfa.artworks.create!(title: 'Sculpture', artist: 'Some Artist', venue:'Museum of Fine Arts', neighborhood:'Fenway', city: 'Boston', description:'Some sculpture')
+mfa.artworks.create!(title: 'Fray Hortensio Felix Paravicino', artist: 'El Greco', neighborhood:'Fenway', city: 'Boston', description:'oil paint on canvas')
 
 
 greenway = Venue.create!(name: 'Rose F. Kennedy Greenway', city: 'boston')
-mfa.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', venue:'Rose F. Kennedy Greenway', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope')
+mfa.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Janet Echelman', neighborhood:'Financial District', city: 'Boston', description:'600-foot shimmering fiber sculpture made of polyethylene rope')
 
 
 puts "created two artworks in Boston"
@@ -25,8 +27,22 @@ puts "created two artworks in Boston"
 
 
 ####New York Artworks
-fivePoints = Venue.create!(name: 'Five Points', city: 'newyork')
-fivePoints.artworks.create!(title: '', artist: 'various', venue:'Five Points', neighborhood:'Long Island City', city: 'New York', description:'Wall of graffitti')
+fivePointz = Venue.create!(name: 'Five Pointz', city: 'newyork')
+fivePointz.artworks.create!(title: '', artist: 'various', neighborhood:'Long Island City', city: 'newyork', description:'Wall of graffitti')
 
 puts "created an artwork in New York"
+
+
+####Chicago Artworks
+artInstitute = Venue.create!(name: 'Art Institute of Chicago', city: 'chicago')
+artInstitute.artworks.create!(title: 'Nighthawks', artist: 'Edward Hopper', neighborhood: 'Loop', description: 'Really awesome painting')
+
+
+####Los Angeles Artworks
+pacificTower = Venue.create!(name:'Security Pacific Tower', city: 'Los Angeles')
+pacificTower.artworks.create!(title: 'Four Arches', artist: 'Alexander Calder', neighborhood: '', description: 'Painted steel sculpture' )
+
+
+
+#only tags that are currently working are historic and salons.
 

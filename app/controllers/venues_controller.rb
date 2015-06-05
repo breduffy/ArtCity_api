@@ -26,12 +26,16 @@ class VenuesController < ApplicationController
 
   # POST /artwork
   def create
-    @venue = Venue.new(venue_params)
-    if @venue.save
-      render json: @venue, status: :created, location: venues_url
+    if Venue.find_by(name: venue_params[:name])
+      render json: Venue.find_by(name: venue_params[:name])
     else
-      render json: @venure.errors, status: :unprocessable_entity
-     end
+      @venue = Venue.new(venue_params)
+      if @venue.save
+        render json: @venue, status: :created
+      else
+        render json: @venure.errors, status: :unprocessable_entity
+      end
+    end
   end
 
   # PATCH /artworks/:id
@@ -54,9 +58,11 @@ class VenuesController < ApplicationController
 
   private
    def venue_params
-    params.require(:movie)
-      .permit(:name)
+    params.require(:venue)
+      .permit(:name, :neighborhood, :street, :city, :state, :zip)
     end
 end
+
+
 
 

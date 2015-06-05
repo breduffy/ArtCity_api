@@ -3,7 +3,6 @@ class CreateArtworks < ActiveRecord::Migration
     create_table :artworks do |t|
       t.string :title
       t.string :artist
-      t.string :venue
       t.string :neighborhood
       t.string :street
       t.string :city

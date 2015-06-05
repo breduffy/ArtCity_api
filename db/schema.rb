@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20150604214629) do
   create_table "artworks", force: :cascade do |t|
     t.string   "title"
     t.string   "artist"
-    t.string   "venue"
     t.string   "neighborhood"
+    t.string   "street"
     t.string   "city"
     t.text     "description"
+    t.string   "closing_date"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.integer  "venue_id"
@@ -64,12 +65,13 @@ ActiveRecord::Schema.define(version: 20150604214629) do
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
+    t.string   "neighborhood"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.integer  "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_foreign_key "artworks", "venues"

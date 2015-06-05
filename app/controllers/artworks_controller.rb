@@ -8,8 +8,12 @@ class ArtworksController < ApplicationController
   end
 
    def find_by_city_and_tags
-    @artworks = params[:tag].map { |tag| Tag.find_by(name: tag).artworks.where(city:params[:city]) }
-    @artworks.flatten!
+    if params[:tag].present?
+      @artworks = params[:tag].map { |tag| Tag.find_by(name: tag).artworks.where(city:params[:city]) }
+      @artworks.flatten!
+    else
+      @artworks = Artwork.where(city: params[:city])
+    end
     render json: @artworks
   end
 
@@ -22,7 +26,8 @@ class ArtworksController < ApplicationController
 
   # POST /artwork
   def create
-    @venue = Artwork.new(create_artwork_params)
+    @venue = Venue.find(params[:venue_id])
+    @artwork = @venue.artworks.new(artwork_params)
     if @artwork.save
       render json: @artwork, status: :created
     else
@@ -72,12 +77,7 @@ class ArtworksController < ApplicationController
 
 
   private
-   def artwork_params
-    params.require(:movie)
-      .permit(:title, :artist, :venue, :neighborhood, :city, :description, :closing_date)
-  end
-
-  def create_artwork_params
+  def artwork_params
     params.permit(:title, :artist, :venue, :neighborhood, :city, :description, :closing_date, :image)
   end
 end

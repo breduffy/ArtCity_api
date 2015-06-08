@@ -1,20 +1,20 @@
 class TagsController < ApplicationController
 
-  # GET /artworks
+  # GET /tags
   def index
-    # all the artworks
+    # all the tags
     @tags = Tag.all
     render json: @tags
   end
 
-  # GET /artworks/:id
+  # GET /tags/:id
   def show
-    # find one artwork by id
+    # find one tags by id
     @tag = Tag.find(params[:id])
     render json: @tag
   end
 
-  # POST /artwork
+  # POST /tags
   def create
     @tag = Tag.new(venue_params)
     if @tag.save
@@ -24,7 +24,7 @@ class TagsController < ApplicationController
      end
   end
 
-  # PATCH /artworks/:id
+  # PATCH /tags/:id
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
@@ -34,7 +34,7 @@ class TagsController < ApplicationController
     end
   end
 
-  # DELETE /artworks/:id
+  # DELETE /tags/:id
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy

@@ -1,30 +1,21 @@
 class VenuesController < ApplicationController
 
 
-
-  #GET all the cities from the venue attributes??
-  # cities = Venue.all.map do |venue|
-  #   venue.city
-  # end
-
-  # cities.unique
-
-
-  # GET /artworks
+  # GET /venues
   def index
-    # all the artworks
+    # all the venues
     @venues = Venue.all
     render json: @venues
   end
 
-  # GET /artworks/:id
+  # GET /venues/:id
   def show
-    # find one artwork by id
+    # find one venues by id
     @venue = Venue.find(params[:id])
     render json: @venue
   end
 
-  # POST /artwork
+  # POST /venues
   def create
     if Venue.find_by(name: venue_params[:name])
       render json: Venue.find_by(name: venue_params[:name])
@@ -38,7 +29,7 @@ class VenuesController < ApplicationController
     end
   end
 
-  # PATCH /artworks/:id
+  # PATCH /venues/:id
   def update
     @venue = Venue.find(params[:id])
     if @venue.update(venue_params)
@@ -48,7 +39,7 @@ class VenuesController < ApplicationController
     end
   end
 
-  # DELETE /artworks/:id
+  # DELETE /venues/:id
   def destroy
     @venue = Venue.find(params[:id])
     @venue.destroy

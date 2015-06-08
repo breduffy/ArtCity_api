@@ -32,7 +32,7 @@ contemporary = Tag.new(name: 'contemporary')
 ##### All images
 
 ####Boston Art Images######
-#Create iamge for floating sculpture
+#Create image for floating sculpture
 @floatingSculpture = Rack::Test::UploadedFile.new(Rails.root + 'floatingSculpture_boston.png', 'image/png')
 Picture.create!(image: @floatingSculpture)
 
@@ -44,6 +44,9 @@ Picture.create!(image: @frayGreco)
 @poe_boston = Rack::Test::UploadedFile.new(Rails.root + 'poe_boston.jpg', 'image/jpg')
 Picture.create!(image: @poe_boston)
 
+#Create image for Frank Gehry Stata Building
+@gehry_boston = Rack::Test::UploadedFile.new(Rails.root + 'gehry_boston.jpg', 'image/jpg')
+Picture.create!(image: @gehry_boston)
 
 
 ####New York Images##############
@@ -100,6 +103,9 @@ float = greenway.artworks.create!(title: 'Giant Floating Sculpture', artist: 'Ja
 bostonCommon = Venue.create!(name: 'Boston Common', city: 'boston')
 poe = bostonCommon.artworks.create!(title: 'Edgar Allan Poe', artist: 'Stefanie Rocknak', neighborhood:'Back Bay', city: 'Boston', description:'Bronze Scuplutre', image: @poe_boston)
 
+cambridge = Venue.create!(name: 'cambridge', city: 'boston')
+gehry = cambridge.artworks.create!(title: 'Stata Center', artist: 'Frank Gehry', neighborhood:'Cambridge', city: 'Boston', description:'Deconstructionist Architecture', image: @gehry_boston)
+
 puts "created three artworks in Boston"
 
 
@@ -116,6 +122,9 @@ float.tags << contemporary
 
 poe.tags << sculpture
 poe.tags << public
+
+gehry.tags << architecture
+gehry.tags << contemporary
 
 
 
